@@ -1,6 +1,9 @@
 package br.com.checklist;
 
+
 import br.com.checklist.entity.Veiculo;
+import br.com.checklist.entity.ChecklistItem;
+import br.com.checklist.entity.ChecklistModelo;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -18,6 +21,15 @@ public class VeiculoResource {
     @Transactional
     public Veiculo criaVeiculo(Veiculo veiculo) {
         System.out.println("Veículo criado com sucesso: " + veiculo);
+        ChecklistItem checklistItem = new ChecklistItem();
+        ChecklistModelo checklistModelo = new ChecklistModelo();
+
+        checklistModelo.setNome("Modelo de Checklist");
+        checklistModelo.setDescricao("Descrição do Modelo de Checklist");
+
+        checklistItem.setDescricao("Descrição do Item de Checklist");
+        checklistItem.setChecklistModelo(checklistModelo);
+
 
         entityManager.persist(veiculo);
         System.out.println("Veículo criado com sucesso: " + veiculo);
